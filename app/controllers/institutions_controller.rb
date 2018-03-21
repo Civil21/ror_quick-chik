@@ -44,7 +44,7 @@ class InstitutionsController < ApplicationController
   end
 
   def institution_params
-    params.require(:institution).permit(:name,:description,:address,:phoneNumber,:workTime)
+    params.require(:institution).permit(:name,:description,:address,:phoneNumber,:workTime,{images:[]})
   end
 
 end

@@ -41,6 +41,8 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'carrierwave', '~> 1.0'
+
 gem 'simplecov', require: false, group: :test
 
 group :development, :test do
