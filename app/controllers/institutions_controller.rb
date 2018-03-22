@@ -11,11 +11,20 @@ class InstitutionsController < ApplicationController
   end
 
   def new
-
+    @institution= Institution.new
   end
 
   def create
+    
     @institution=Institution.create(institution_params)
+
+    @category = params[:institution][:category]
+    @category.map{|p|  
+      if !(p.to_i == 0)
+        @institution.category << Category.find(p.to_i)
+      end
+    }
+
     if @institution.save 
       redirect_to institution_path(@institution.id)
     else
@@ -28,6 +37,15 @@ class InstitutionsController < ApplicationController
   end
 
   def update
+
+    @category = params[:institution][:category]
+    @institution.category.clear 
+    @category.map{|p|  
+      if !@institution.category.exists?(p.to_i) and !(p.to_i == 0)
+        @institution.category << Category.find(p.to_i)
+      end
+    }
+
     @institution.update(institution_params)
     redirect_to institution_path(@institution.id)
   end

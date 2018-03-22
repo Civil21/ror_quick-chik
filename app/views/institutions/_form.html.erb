@@ -1,7 +1,8 @@
 <p><%=f.label :name%><br/>
 <%=f.text_field :name%></p>
 
-<h3>Поле для тегів</h3> 
+<p><%=f.label :category%><br/>
+<%= f.select :category, Category.all.map {|p| [ p.name, p.id ] },  {:prompt => "Виберіть тип закладу"},  {:multiple => true} %></p>
 
 <p><%=f.label :description%><br/>
 <%=f.text_area :description%></p>
