@@ -17,17 +17,12 @@ class InstitutionsController < ApplicationController
 
   def create
     
+    @categories=Category.find(params[:category_ids])
     @institution=Institution.create(institution_params)
 
-
-
     if @institution.save 
-      @category = params[:institution][:category]
-      @category.map{|p|  
-        if !(p.to_i == 0)
-          @institution.category << Category.find(p.to_i)
-        end
-      }
+      
+      @institution.category << @categories
 
       @work_time=WorkTime.create(institution_id: @institution.id , 
         mondayWork: params[:workTime][:mondayWork], mondayStart: params[:workTime][:mondayStart], mondayEnd:params[:workTime][:mondayEnd], 
@@ -51,13 +46,7 @@ class InstitutionsController < ApplicationController
 
   def update
 
-    @category = params[:institution][:category]
-    @institution.category.clear 
-    @category.map{|p|  
-      if !@institution.category.exists?(p.to_i) and !(p.to_i == 0)
-        @institution.category << Category.find(p.to_i)
-      end
-    }
+    @institution.categories << Category.find(params[:category_ids])
 
       @work_time=WorkTime.create(institution_id: @institution.id , 
         mondayWork: params[:workTime][:mondayWork], mondayStart: params[:workTime][:mondayStart], mondayEnd:params[:workTime][:mondayEnd], 

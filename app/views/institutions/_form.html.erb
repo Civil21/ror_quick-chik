@@ -2,7 +2,12 @@
 <%=f.text_field :name%></p>
 
 <p><%=f.label :category%><br/>
-<%= f.select :category, Category.all.map {|p| [ p.name, p.id ] },  {:prompt => "Виберіть тип закладу"},  {:multiple => true} %></p>
+	<%Category.all.each do |category|%>
+		<p>
+			<%= check_box_tag 'category_ids[]' , category.id%>
+			<%= f.label category.name%>
+		</p>
+	<%end%>
 
 <p><%=f.label :description%><br/>
 <%=f.text_area :description%></p>
