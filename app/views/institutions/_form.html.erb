@@ -13,7 +13,29 @@
 <p><%=f.label :phoneNumber%><br/>
 <%=f.text_field :phoneNumber%></p>
 
-<h3>ГОдини роботи</h3>
+<p>Графік роботи</p>
+
+<p><%=:monday%><br/>
+<%=check_box 'workTime', :mondayWork%> <%=text_field 'workTime', :mondayStart%> : <%=text_field 'workTime', :mondayEnd%></p>
+
+<p><%=:tuesday%><br/>
+<%=check_box 'workTime', :tuesdayWork%> <%=text_field 'workTime', :tuesdayStart%> : <%=text_field 'workTime', :tuesdayEnd%></p>
+
+<p><%=:wednesday%><br/>
+<%=check_box 'workTime', :wednesdayWork%> <%=text_field 'workTime', :wednesdayStart%> : <%=text_field 'workTime', :wednesdayEnd%></p>
+
+<p><%=:thursday%><br/>
+<%=check_box 'workTime', :thursdayWork%> <%=text_field 'workTime', :thursdayStart%> : <%=text_field 'workTime', :thursdayEnd%></p>
+
+<p><%=:friday%><br/>
+<%=check_box 'workTime', :fridayWork%> <%=text_field 'workTime', :fridayStart%> : <%=text_field 'workTime', :fridayEnd%></p>
+
+<p><%=:saturday%><br/>
+<%=check_box 'workTime', :saturdayWork%> <%=text_field 'workTime', :saturdayStart%> : <%=text_field 'workTime', :saturdayEnd%></p>
+
+<p><%=:sunday%><br/>
+<%=check_box 'workTime', :sundayWork%> <%=text_field 'workTime', :sundayStart%> : <%=text_field 'workTime', :sundayEnd%></p>
+
 
 <p><%= f.file_field :images, multiple: true %></p>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180321220301) do
+ActiveRecord::Schema.define(version: 20180322191250) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -80,6 +80,33 @@ ActiveRecord::Schema.define(version: 20180321220301) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "work_times", force: :cascade do |t|
+    t.integer "institution_id"
+    t.boolean "mondayWork"
+    t.string "mondayStart"
+    t.string "mondayEnd"
+    t.boolean "tuesdayWork"
+    t.string "tuesdayStart"
+    t.string "tuesdayEnd"
+    t.boolean "wednesdayWork"
+    t.string "wednesdayStart"
+    t.string "wednesdayEnd"
+    t.boolean "thursdayWork"
+    t.string "thursdayStart"
+    t.string "thursdayEnd"
+    t.boolean "fridayWork"
+    t.string "fridayStart"
+    t.string "fridayEnd"
+    t.boolean "saturdayWork"
+    t.string "saturdayStart"
+    t.string "saturdayEnd"
+    t.boolean "sundayWork"
+    t.string "sundayStart"
+    t.string "sundayEnd"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

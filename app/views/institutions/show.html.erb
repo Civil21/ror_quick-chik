@@ -1,8 +1,27 @@
 <h2><%=@institution.name%></h2>
 Інші дані
+<p>
 <%@institution.category.each do |category|%>
 <%=link_to category.name, category_path(category.name)%>
 <%end%>
+</p>
 <%@institution.images.each do |foto|%>
-<%=image_tag foto%>
+<%=image_tag foto ,weight: 30, height: 30%>
 <%end%>
+<h2>Графік роботи</h2>
+<p><%=:monday%> <% if @workTime.mondayWork %><%=@workTime.mondayStart%> : <%=@workTime.mondayEnd%><%else%>Вихідний<%end%></p>
+<p><%=:tuesday%> <% if @workTime.tuesdayWork %><%=@workTime.tuesdayStart%> : <%=@workTime.tuesdayEnd%><%else%>Вихідний<%end%></p>
+<p><%=:wednesday %> <% if @workTime.wednesdayWork %><%=@workTime.wednesdayStart%> : <%=@workTime.wednesdayEnd%><%else%>Вихідний<%end%></p>
+<p><%=:thursday%> <% if @workTime.thursdayWork %><%=@workTime.thursdayStart%> : <%=@workTime.thursdayEnd%><%else%>Вихідний<%end%></p>
+<p><%=:friday%> <% if @workTime.fridayWork %><%=@workTime.fridayStart%> : <%=@workTime.fridayEnd%><%else%>Вихідний<%end%></p>
+<p><%=:saturday%> <% if @workTime.saturdayWork %><%=@workTime.saturdayStart%> : <%=@workTime.saturdayEnd%><%else%>Вихідний<%end%></p>
+<p><%=:sunday%> <% if @workTime.sundayWork %><%=@workTime.sundayStart%> : <%=@workTime.sundayEnd%><%else%>Вихідний<%end%></p>
+
+
+Monday 	понеділок
+Tuesday 	вівторок
+Wednesday 	середа
+Thursday 	четвер
+Friday 	п'ятниця
+Saturday 	субота
+Sunday
