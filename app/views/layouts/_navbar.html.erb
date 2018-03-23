@@ -1,3 +1,4 @@
+<!-- 
 <h2>
 <%if user_signed_in? %>
       	<%= link_to destroy_user_session_path, method: :delete do%><span class="glyphicon glyphicon-log-out"></span>Вихід<%end%><
@@ -5,3 +6,60 @@
       	<%= link_to new_user_session_path do %><span class="glyphicon glyphicon-log-in"></span> Вхід<%end%>
 <%end%>
 </h2>
+-->
+<%if user_signed_in? %>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <b> <span class="navbar-brand" href="#">QuickChik</span></b>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">CATEGORY
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Pub</a></li>
+            <li><a href="#">Restoran</a></li>
+            <li><a href="#">Cafe</a></li>
+          </ul>
+        </li>
+        <li><%= link_to destroy_user_session_path, method: :delete do%><span class="glyphicon glyphicon-log-out"></span></li><%end%>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ <%else%>
+
+ <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <b> <span class="navbar-brand" href="#">QuickChik</span></b>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#contact">ABOUT</a></li>
+        <li><%= link_to new_user_session_path do %><span class="glyphicon glyphicon-log-in"></span></li>
+        <%end%>
+        </ul>
+        </div>
+        </div>
+        </nav>
+
+      </ul>
+<%end%>
