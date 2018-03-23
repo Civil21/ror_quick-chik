@@ -5,4 +5,5 @@ class Institution < ApplicationRecord
    has_one :work_time
    has_many :ratings
    has_many :users, through: :ratings
+   has_many :Institution_comments
 end

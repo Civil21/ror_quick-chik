@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
    has_many :ratings
    has_many :institutions, through: :ratings
+
+   has_many :institution_commensts
 end

@@ -8,6 +8,7 @@ class InstitutionsController < ApplicationController
 
   def show
     @rating=Rating.find_by(user_id: current_user,institution_id: @institution.id)
+    @comments=InstitutionComment.where(institution_id: @institution.id)
   end
 
   def new

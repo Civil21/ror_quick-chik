@@ -29,3 +29,15 @@
 	cleannes: <%=@institution.cleannes%>
 	atmosphere: <%=@institution.atmosphere%>
 <%end%>
+
+<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">
+  	<span class="glyphicon glyphicon-plus">Новий комент</span>
+</button>
+<div id="comment" class="collapse">
+	<%=form_for :institution_comment, url:institution_institution_comments_path(@institution.id) do |f|%>
+  		<%=render "institution_comments/form", f:f%>
+  	<%end%>
+</div>
+<% @comments.each do |comment| %>
+<%= render 'institution_comments/institution_comment', comment:comment%>
+<%end%>
