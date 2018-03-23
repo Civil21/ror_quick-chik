@@ -18,10 +18,14 @@
 <p><%=:sunday%> <% if @workTime.sundayWork %><%=@workTime.sundayStart%> : <%=@workTime.sundayEnd%><%else%>Вихідний<%end%></p>
 
 
-Monday 	понеділок
-Tuesday 	вівторок
-Wednesday 	середа
-Thursday 	четвер
-Friday 	п'ятниця
-Saturday 	субота
-Sunday
+<%if @rating.nil? %>
+
+	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
+		<%=render 'raiting', f:f%>
+	<%end%>
+<%else%>
+	kitchen: <%=@institution.kitchen%>
+	servise: <%=@institution.servise%>
+	cleannes: <%=@institution.cleannes%>
+	atmosphere: <%=@institution.atmosphere%>
+<%end%>

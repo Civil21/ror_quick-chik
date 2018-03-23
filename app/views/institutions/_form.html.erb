@@ -2,7 +2,8 @@
 <%=f.text_field :name%></p>
 
 <p><%=f.label :category%><br/>
-	<%Category.all.each do |category|%>
+
+	<%@categories.each do |category|%>
 		<p>
 			<%= check_box_tag 'category_ids[]' , category.id%>
 			<%= f.label category.name%>
@@ -19,29 +20,29 @@
 <%=f.text_field :phoneNumber%></p>
 
 <p>Графік роботи</p>
-
+<%=fields_for @workTime do |t|%>
 <p><%=:monday%><br/>
-<%=check_box 'workTime', :mondayWork%> <%=text_field 'workTime', :mondayStart%> : <%=text_field 'workTime', :mondayEnd%></p>
+<%=t.check_box :mondayWork%> <%=t.text_field :mondayStart%> : <%=t.text_field :mondayEnd%></p>
 
 <p><%=:tuesday%><br/>
-<%=check_box 'workTime', :tuesdayWork%> <%=text_field 'workTime', :tuesdayStart%> : <%=text_field 'workTime', :tuesdayEnd%></p>
+<%=t.check_box :tuesdayWork%> <%=t.text_field :tuesdayStart%> : <%=t.text_field :tuesdayEnd%></p>
 
 <p><%=:wednesday%><br/>
-<%=check_box 'workTime', :wednesdayWork%> <%=text_field 'workTime', :wednesdayStart%> : <%=text_field 'workTime', :wednesdayEnd%></p>
+<%=t.check_box :wednesdayWork%> <%=t.text_field  :wednesdayStart%> : <%=t.text_field  :wednesdayEnd%></p>
 
 <p><%=:thursday%><br/>
-<%=check_box 'workTime', :thursdayWork%> <%=text_field 'workTime', :thursdayStart%> : <%=text_field 'workTime', :thursdayEnd%></p>
+<%=t.check_box  :thursdayWork%> <%=t.text_field :thursdayStart%> : <%=t.text_field  :thursdayEnd%></p>
 
 <p><%=:friday%><br/>
-<%=check_box 'workTime', :fridayWork%> <%=text_field 'workTime', :fridayStart%> : <%=text_field 'workTime', :fridayEnd%></p>
+<%=t.check_box :fridayWork%> <%=t.text_field   :fridayStart%> : <%=t.text_field   :fridayEnd%></p>
 
 <p><%=:saturday%><br/>
-<%=check_box 'workTime', :saturdayWork%> <%=text_field 'workTime', :saturdayStart%> : <%=text_field 'workTime', :saturdayEnd%></p>
+<%=t.check_box  :saturdayWork%> <%=t.text_field   :saturdayStart%> : <%=t.text_field   :saturdayEnd%></p>
 
 <p><%=:sunday%><br/>
-<%=check_box 'workTime', :sundayWork%> <%=text_field 'workTime', :sundayStart%> : <%=text_field 'workTime', :sundayEnd%></p>
+<%=t.check_box   :sundayWork%> <%=t.text_field   :sundayStart%> : <%=t.text_field  :sundayEnd%></p>
 
-
+<%end%>
 <p><%= f.file_field :images, multiple: true %></p>
 
 <p><%=f.submit :commit%></p>

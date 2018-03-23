@@ -1,0 +1,36 @@
+
+    	<%=f.label :kitchen%>
+    	<div id="reviewStars-input">
+  			<%= f.collection_radio_buttons :kitchen, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
+  				<%=b.label { b.radio_button + b.text }%>
+  			<%end%>
+  		</div>
+  		<br/>
+  		<br/>
+    	<%=f.label :servise%>
+    	<div id="reviewStars-input">
+    		<%= f.collection_radio_buttons :servise, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
+  				<%=b.label { b.radio_button + b.text }%>
+  			<%end%>
+  		</div>
+  		<br/>
+  		<br/>
+    	<%=f.label :cleannes%>
+    	<div id="reviewStars-input">
+    		<%= f.collection_radio_buttons :cleannes, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
+  				<%=b.label { b.radio_button + b.text }%>
+  			<%end%>
+  		</div>
+  		<br/>
+  		<br/>
+  		<%=f.label :atmosphere%>
+  		<div id="reviewStars-input">
+   			<%= f.collection_radio_buttons :atmosphere, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
+  				<%=b.label { b.radio_button + b.text }%>
+  			<%end%>
+  		</div>
+  		<br/>
+  		<br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
