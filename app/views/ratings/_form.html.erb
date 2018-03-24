@@ -1,36 +1,18 @@
-
+<hr>
+<h3>Написати рекомендацію :</h3>
     	<%=f.label :kitchen%>
-    	<div id="reviewStars-input">
-  			<%= f.collection_radio_buttons :kitchen, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
-  				<%=b.label { b.radio_button + b.text }%>
-  			<%end%>
-  		</div>
-  		<br/>
-  		<br/>
+      <div id="kitchen"></div>
     	<%=f.label :servise%>
-    	<div id="reviewStars-input">
-    		<%= f.collection_radio_buttons :servise, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
-  				<%=b.label { b.radio_button + b.text }%>
-  			<%end%>
+    	<div id="servise">
   		</div>
-  		<br/>
-  		<br/>
+
     	<%=f.label :cleannes%>
-    	<div id="reviewStars-input">
-    		<%= f.collection_radio_buttons :cleannes, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
-  				<%=b.label { b.radio_button + b.text }%>
-  			<%end%>
+    	<div id="cleannes">
   		</div>
-  		<br/>
-  		<br/>
+
   		<%=f.label :atmosphere%>
-  		<div id="reviewStars-input">
-   			<%= f.collection_radio_buttons :atmosphere, [[1,""],[2,""],[3,""],[4,""],[5,""]], :first, :last do |b| %>
-  				<%=b.label { b.radio_button + b.text }%>
-  			<%end%>
+  		<div id="atmosphere">
   		</div>
-  		<br/>
-  		<br/>
       <div>
         <p><%=f.label :text%><br/>
         <%=f.text_area :text %></p>
@@ -38,3 +20,26 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
+  <script>
+    $('#kitchen').raty({
+      path: '/assets',
+      scoreName: 'rating[kitchen]',
+      score: 1
+    });
+    $('#servise').raty({
+      path: '/assets',
+      scoreName: 'rating[servise]',
+      score: 1
+    });
+    $('#cleannes').raty({
+      path: '/assets',
+      scoreName: 'rating[cleannes]',
+      score: 1
+    });
+    $('#atmosphere').raty({
+      path: '/assets',
+      scoreName: 'rating[atmosphere]',
+      score: 1
+    });
+  </script>

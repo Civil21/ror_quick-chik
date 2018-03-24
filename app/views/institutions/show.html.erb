@@ -17,30 +17,25 @@
 <p><%=:saturday%> <% if @workTime.saturdayWork %><%=@workTime.saturdayStart%> : <%=@workTime.saturdayEnd%><%else%>Вихідний<%end%></p>
 <p><%=:sunday%> <% if @workTime.sundayWork %><%=@workTime.sundayStart%> : <%=@workTime.sundayEnd%><%else%>Вихідний<%end%></p>
 
+<hr>
+<h3>Середній рейтинг закладу:</h3>
+	kitchen: <div id="institution_kitchen"></div>
+	servise: <div id="institution_servise"></div>
+	cleannes: <div id="institution_cleannes"></div>
+	atmosphere: <div id="institution_atmosphere"></div>
 
 <%if @rating.nil? %>
-<hr>
-	kitchen: <%=@institution.kitchen%>
-	servise: <%=@institution.servise%>
-	cleannes: <%=@institution.cleannes%>
-	atmosphere: <%=@institution.atmosphere%>
-<hr>
+
 	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
 		<%=render 'ratings/form', f:f%>
 	<%end%>
 <hr>
 	<%= render @ratings%>
-
-<%else%>
-
-	kitchen: <%=@institution.kitchen%>
-	servise: <%=@institution.servise%>
-	cleannes: <%=@institution.cleannes%>
-	atmosphere: <%=@institution.atmosphere%>
-
+<%end%>
+<hr>
+<h3>Рекомендації користувачів:</h3>
 	<%= render @ratings%>
 
-<%end%>
 
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">
   	<span class="glyphicon glyphicon-plus">Новий комент</span>
@@ -53,3 +48,25 @@
 <% @comments.each do |comment| %>
 <%= render 'institution_comments/institution_comment', comment:comment%>
 <%end%>
+<script>
+    $('#institution_kitchen').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=@institution.kitchen%>
+    });
+    $('#institution_servise').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=@institution.servise%>
+    });
+    $('#institution_cleannes').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=@institution.cleannes%>
+    });
+    $('#institution_atmosphere').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=@institution.atmosphere%>
+    });
+</script>
