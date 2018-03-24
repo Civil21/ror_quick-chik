@@ -19,15 +19,27 @@
 
 
 <%if @rating.nil? %>
-
-	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
-		<%=render 'raiting', f:f%>
-	<%end%>
-<%else%>
+<hr>
 	kitchen: <%=@institution.kitchen%>
 	servise: <%=@institution.servise%>
 	cleannes: <%=@institution.cleannes%>
 	atmosphere: <%=@institution.atmosphere%>
+<hr>
+	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
+		<%=render 'ratings/form', f:f%>
+	<%end%>
+<hr>
+	<%= render @ratings%>
+
+<%else%>
+
+	kitchen: <%=@institution.kitchen%>
+	servise: <%=@institution.servise%>
+	cleannes: <%=@institution.cleannes%>
+	atmosphere: <%=@institution.atmosphere%>
+
+	<%= render @ratings%>
+
 <%end%>
 
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">

@@ -8,6 +8,7 @@ class InstitutionsController < ApplicationController
 
   def show
     @rating=Rating.find_by(user_id: current_user,institution_id: @institution.id)
+    @ratings=Rating.where(institution_id: @institution.id).except(user_id: current_user.id)
     @comments=InstitutionComment.where(institution_id: @institution.id)
   end
 
@@ -66,12 +67,15 @@ class InstitutionsController < ApplicationController
     end
     kitchen = servise = cleannes = atmosphere =0
 
-    n =Rating.where(institution_id: @institution.id).count
-    kitchen =(@institution.kitchen*(n-1)+ @rating.kitchen)/n
-    servise =(@institution.servise*(n-1)+ @rating.servise)/n
-    cleannes =(@institution.cleannes*(n-1)+ @rating.cleannes)/n
-    atmosphere =(@institution.atmosphere*(n-1)+ @rating.atmosphere)/n
-    @institution.update(kitchen: kitchen, servise: servise, cleannes: cleannes, atmosphere: atmosphere)
+    ratings =Rating.where(institution_id: @institution.id)
+    kitchen = servise = cleannes = atmosphere =0
+    ratings.each  do |r|
+      kitchen+=r.kitchen
+      servise+=r.servise
+      cleannes+=r.cleannes
+      atmosphere+=r.atmosphere
+    end
+    @institution.update(kitchen: kitchen/ratings.count, servise: servise/ratings.count, cleannes: cleannes/ratings.count, atmosphere: atmosphere/ratings.count)
     redirect_to institution_path(@institution.id)
   end
 
@@ -91,7 +95,7 @@ class InstitutionsController < ApplicationController
   end
 
   def ratign_params
-    params.require(:rating).permit(:user_id,:institution_id,:kitchen,:servise,:cleannes,:atmosphere)
+    params.require(:rating).permit(:user_id,:institution_id,:kitchen,:servise,:cleannes,:atmosphere,:text)
   end
 
 end
