@@ -1,0 +1,45 @@
+<hr>
+<h3>Написати рекомендацію :</h3>
+    	<%=f.label :kitchen%>
+      <div id="kitchen"></div>
+    	<%=f.label :servise%>
+    	<div id="servise">
+  		</div>
+
+    	<%=f.label :cleannes%>
+    	<div id="cleannes">
+  		</div>
+
+  		<%=f.label :atmosphere%>
+  		<div id="atmosphere">
+  		</div>
+      <div>
+        <p><%=f.label :text%><br/>
+        <%=f.text_area :text %></p>
+      </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+  <script>
+    $('#kitchen').raty({
+      path: '/assets',
+      scoreName: 'rating[kitchen]',
+      score: 1
+    });
+    $('#servise').raty({
+      path: '/assets',
+      scoreName: 'rating[servise]',
+      score: 1
+    });
+    $('#cleannes').raty({
+      path: '/assets',
+      scoreName: 'rating[cleannes]',
+      score: 1
+    });
+    $('#atmosphere').raty({
+      path: '/assets',
+      scoreName: 'rating[atmosphere]',
+      score: 1
+    });
+  </script>

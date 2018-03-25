@@ -1,0 +1,32 @@
+<div>
+<hr>
+kitchen: <div id="user_kitchen"></div>
+servise: <div id="user_servise"></div>
+cleannes: <div id="user_cleannes"></div>
+atmosphere: <div id="user_atmosphere"></div>
+<p>Text: <%=rating.text%><br/>
+Author: <%=rating.user.email%></p>
+
+</div>
+<script>
+    $('#user_kitchen').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=rating.kitchen%>
+    });
+    $('#user_servise').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=rating.servise%>
+    });
+    $('#user_cleannes').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=rating.cleannes%>
+    });
+    $('#user_atmosphere').raty({
+      path: '/assets',
+      readOnly:true,
+      score: <%=rating.atmosphere%>
+    });
+</script>
