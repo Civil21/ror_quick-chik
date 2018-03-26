@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
    has_many :ratings
-   has_many :institutions, through: :ratings
-
+   has_many :rating_comments
    has_many :institution_commensts
+
 end

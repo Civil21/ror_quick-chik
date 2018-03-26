@@ -29,14 +29,16 @@
 	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
 		<%=render 'ratings/form', f:f%>
 	<%end%>
-<hr>
-	<%= render @ratings%>
+
+<%else%>
+
 <%end%>
 <hr>
 <h3>Рекомендації користувачів:</h3>
 	<%= render @ratings%>
 
-
+<hr>
+<h2>Кометраі Закладу</h2>
 <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">
   	<span class="glyphicon glyphicon-plus">Новий комент</span>
 </button>
@@ -69,4 +71,6 @@
       readOnly:true,
       score: <%=@institution.atmosphere%>
     });
+
+
 </script>

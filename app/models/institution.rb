@@ -4,6 +4,5 @@ class Institution < ApplicationRecord
    has_and_belongs_to_many :category
    has_one :work_time
    has_many :ratings
-   has_many :users, through: :ratings
    has_many :Institution_comments
 end

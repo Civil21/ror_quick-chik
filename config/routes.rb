@@ -16,5 +16,9 @@ Rails.application.routes.draw do
   	end
   resources :institution_comments ,only:[:create,:update,:destroy]
   end
+
+  resources :rating, only:[] do
+    resources :rating_comments,only:[:create,:update,:destroy]
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

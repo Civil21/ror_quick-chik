@@ -8,8 +8,12 @@ class InstitutionsController < ApplicationController
 
   def show
     @rating=Rating.find_by(user_id: current_user,institution_id: @institution.id)
-    @ratings=Rating.where(institution_id: @institution.id).except(user_id: current_user.id)
+    @ratings=Rating.where(institution_id: @institution.id)
     @comments=InstitutionComment.where(institution_id: @institution.id)
+    @ratingComments=[]
+    @ratings.each do |rating| 
+      @ratingComments[rating.id]=RatingComment.where(rating_id: rating.id)
+    end
   end
 
   def new
