@@ -1,3 +1,10 @@
 <hr>
 <p><%=comment.text%><p>
 <p>Author: <%=comment.user.email%></p>
+    <%=link_to institution_comment_positiv_path(comment.id) do%>
+      <span class="glyphicon glyphicon-plus"></span>
+    <%end%>
+    <%=InstitutionCommentVote.where(institution_comment_id:comment.id).sum(:score)%>
+    <%=link_to institution_comment_negativ_path(comment.id) do%>
+      <span class="glyphicon glyphicon-minus"></span>
+    <%end%>

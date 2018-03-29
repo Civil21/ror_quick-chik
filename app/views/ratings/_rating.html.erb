@@ -1,5 +1,12 @@
 <div>
 <hr>
+    <%=link_to rating_positiv_path(rating.id) do%>
+      <span class="glyphicon glyphicon-plus"></span>
+    <%end%>
+    <%=RatingVote.where(rating_id:rating.id).sum(:score)%>
+    <%=link_to rating_negativ_path(rating.id) do%>
+      <span class="glyphicon glyphicon-minus"></span>
+    <%end%>
 kitchen: <div id="user_kitchen<%=rating.id%>"></div>
 servise: <div id="user_servise<%=rating.id%>"></div>
 cleannes: <div id="user_cleannes<%=rating.id%>"></div>
@@ -15,7 +22,7 @@ Author: <%=rating.user.email%></p>
 <%end%>
 </div>
 <% @ratingComments[rating.id].each do |comment| %>
-<%= render 'institution_comments/institution_comment', comment:comment%>
+<%= render 'rating_comments/rating_comment', comment:comment%>
 <%end%>
 </div>
 <script>

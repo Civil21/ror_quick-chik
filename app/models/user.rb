@@ -4,18 +4,21 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  	devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-   has_one :userparam
-   has_many :ratings
-   has_many :rating_comments
-   has_many :institution_commensts
+   	has_one :userparam
+   	has_many :ratings
+   	has_many :rating_comments
+   	has_many :institution_commensts
+   	has_many :rating_votes
+   	has_many :rating_comment_votes
+   	has_many :institution_commenst_votes
 
-   private
+   	private
 
-   def create_userparam
+   	def create_userparam
    		@userparam=Userparam.create(user_id: self.id,name: self.email.split(/@/)[0])
    		@userparam.save
-   end
+   	end
 
 end
