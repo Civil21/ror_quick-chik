@@ -1,4 +1,5 @@
 Профіль користувача <%= link_to "Edit", edit_userparam_path(@userparam.id)%>
+<%= image_tag @userparam.avatar %>
 <h3><%= @userparam.name%></h3>
 <h4><%= @userparam.full_name%></h4>
 <%=@userparam.country%>

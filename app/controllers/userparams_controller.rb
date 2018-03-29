@@ -23,7 +23,7 @@ class UserparamsController < ApplicationController
 	private 
 
 	def userparam_params
-		params.require(:userparam).permit(:user_id,:name, :full_name, :country,:city,:adress,:facebook_url,:dofb)
+		params.require(:userparam).permit(:user_id,:name, :full_name, :country,:city,:adress,:facebook_url,:dofb,:avatar)
 	end
 
 	def get_userparam
