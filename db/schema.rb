@@ -64,16 +64,13 @@ ActiveRecord::Schema.define(version: 20180324094655) do
 
   create_table "institutions", force: :cascade do |t|
     t.string "name"
-    t.string "description"
     t.string "address"
     t.string "phoneNumber"
-    t.string "images"
-    t.float "kitchen", default: 0.0, null: false
-    t.float "servise", default: 0.0, null: false
-    t.float "cleannes", default: 0.0, null: false
-    t.float "atmosphere", default: 0.0, null: false
+    t.string "workTime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.string "images"
   end
 
   create_table "ratings", force: :cascade do |t|
