@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324094655) do
+ActiveRecord::Schema.define(version: 20180329220402) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20180324094655) do
     t.integer "institution_id"
   end
 
+  create_table "institution_comment_votes", force: :cascade do |t|
+    t.integer "institution_comment_id"
+    t.integer "user_id"
+    t.integer "score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "institution_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "institution_id"
@@ -73,6 +81,30 @@ ActiveRecord::Schema.define(version: 20180324094655) do
     t.string "images"
   end
 
+  create_table "rating_comment_votes", force: :cascade do |t|
+    t.integer "rating_comment_id"
+    t.integer "user_id"
+    t.integer "score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rating_comments", force: :cascade do |t|
+    t.integer "rating_id"
+    t.integer "user_id"
+    t.string "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rating_votes", force: :cascade do |t|
+    t.integer "rating_id"
+    t.integer "user_id"
+    t.integer "score", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ratings", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "user_id"
@@ -83,6 +115,21 @@ ActiveRecord::Schema.define(version: 20180324094655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "text"
+  end
+
+  create_table "userparams", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "full_name"
+    t.datetime "dofb"
+    t.string "facebook_url"
+    t.string "country"
+    t.string "city"
+    t.string "adress"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.integer "score", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|

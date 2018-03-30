@@ -1,30 +1,47 @@
 <div>
 <hr>
-kitchen: <div id="user_kitchen"></div>
-servise: <div id="user_servise"></div>
-cleannes: <div id="user_cleannes"></div>
-atmosphere: <div id="user_atmosphere"></div>
+    <%=link_to rating_positiv_path(rating.id) do%>
+      <span class="glyphicon glyphicon-plus"></span>
+    <%end%>
+    <%=RatingVote.where(rating_id:rating.id).sum(:score)%>
+    <%=link_to rating_negativ_path(rating.id) do%>
+      <span class="glyphicon glyphicon-minus"></span>
+    <%end%>
+kitchen: <div id="user_kitchen<%=rating.id%>"></div>
+servise: <div id="user_servise<%=rating.id%>"></div>
+cleannes: <div id="user_cleannes<%=rating.id%>"></div>
+atmosphere: <div id="user_atmosphere<%=rating.id%>"></div>
 <p>Text: <%=rating.text%><br/>
 Author: <%=rating.user.email%></p>
-
+<button type="button" class="btn btn-default" data-toggle="collapse" data-target="#rating_comment_<%=rating.id%>">
+    <span class="glyphicon glyphicon-plus">Відповісти</span>
+</button>
+<div id="rating_comment_<%=rating.id%>" class="collapse">
+<%=form_for :rating_comment ,url:rating_rating_comments_path(rating.id) do |f|%>
+<%=render "rating_comments/form" ,f:f%>
+<%end%>
+</div>
+<% @ratingComments[rating.id].each do |comment| %>
+<%= render 'rating_comments/rating_comment', comment:comment%>
+<%end%>
 </div>
 <script>
-    $('#user_kitchen').raty({
+    $('#user_kitchen<%=rating.id%>').raty({
       path: '/assets',
       readOnly:true,
       score: <%=rating.kitchen%>
     });
-    $('#user_servise').raty({
+    $('#user_servise<%=rating.id%>').raty({
       path: '/assets',
       readOnly:true,
       score: <%=rating.servise%>
     });
-    $('#user_cleannes').raty({
+    $('#user_cleannes<%=rating.id%>').raty({
       path: '/assets',
       readOnly:true,
       score: <%=rating.cleannes%>
     });
-    $('#user_atmosphere').raty({
+    $('#user_atmosphere<%=rating.id%>').raty({
       path: '/assets',
       readOnly:true,
       score: <%=rating.atmosphere%>

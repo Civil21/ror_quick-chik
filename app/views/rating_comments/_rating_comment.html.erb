@@ -1,0 +1,11 @@
+<hr>
+Це точно тута
+<p><%=comment.text%><p>
+<p>Author: <%=comment.user.email%></p>
+    <%=link_to rating_comment_positiv_path(comment.id) do%>
+      <span class="glyphicon glyphicon-plus"></span>
+    <%end%>
+    <%=RatingCommentVote.where(rating_comment_id: comment.id).sum(:score)%>
+    <%=link_to rating_comment_negativ_path(comment.id) do%>
+      <span class="glyphicon glyphicon-minus"></span>
+    <%end%>
