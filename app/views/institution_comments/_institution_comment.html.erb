@@ -1,6 +1,10 @@
 <hr>
-<p><%=comment.text%><p>
-<p>Author: <%=comment.user.email%></p>
+<div class="panel-group">
+<div class="panel panel-success">
+<div class="panel-body">
+<h4><%=comment.text%></h4>
+<hr>
+<h6>Author: <%=comment.user.email%></h6>
     <%=link_to institution_comment_positiv_path(comment.id) do%>
       <span class="glyphicon glyphicon-plus"></span>
     <%end%>
@@ -8,3 +12,6 @@
     <%=link_to institution_comment_negativ_path(comment.id) do%>
       <span class="glyphicon glyphicon-minus"></span>
     <%end%>
+</div>
+</div>
+</div>
