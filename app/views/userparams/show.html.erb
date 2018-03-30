@@ -1,6 +1,32 @@
+<style>
+	body {
+		background-color: #d0d0d0;
+	}
+</style>
 
-Профіль користувача <%= link_to "Edit", edit_userparam_path(@userparam.id)%>
+<div class="container-fluid">
+  <div class="text-center">
+
+</div>
+<div class="row"  style="margin-left: 30%;">
+    <div class="col-sm-6">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+        <h2> <b><%= @userparam.name%>`s</b> profile! </h2>
+        </div>
+       <div class="panel-body">
+<h4>Full name: <%= @userparam.full_name%></h4>
+<h4>Country: <%= @userparam.country%></h4>
+<h4>City: <%= @userparam.city%></h4>
+<h4>Adress: <%= @userparam.adress%></h4>
+<h4>Data of birthday: <%= @userparam.dofb%></h4>
+
+</div>
+</div>
+<%= link_to "Edit", edit_userparam_path(@userparam.id)%>
 <%= image_tag @userparam.avatar %>
-<h3><%= @userparam.name%></h3>
-<h4><%= @userparam.full_name%></h4>
-<%=@userparam.country%>
+</div>
+</div>
+</div>
+
+
