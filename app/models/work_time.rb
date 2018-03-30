@@ -30,4 +30,32 @@ class WorkTime < ApplicationRecord
      lendth: { in: 5 },
       :with => /\(?[0-9]{2}\)?:[0-9]{2}/
 
+validates_format_of :mondayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
+
+      validates_format_of :tuesdayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
+
+      validates_format_of :wednesdayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
+
+      validates_format_of :thursdayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
+
+
+      validates_format_of :fridayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
+
+      validates_format_of :saturdayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
+
+       validates_format_of :sundayEnd, 
+     lendth: { in: 5 },
+      :with => /\(?[0-9]{2}\)?:[0-9]{2}/
 end
