@@ -9,7 +9,7 @@ class InstitutionCommentsController < ApplicationController
 		if @comment.save
 		redirect_to institution_path(params[:institution_id])
 		else
-		render "institutions/show"
+      
 		end
 	end
 

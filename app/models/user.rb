@@ -17,7 +17,7 @@ class User < ApplicationRecord
    	private
 
    	def create_userparam
-   		@userparam=Userparam.create(user_id: self.id,name: self.email.split(/@/)[0])
+   		@userparam=Userparam.create(user_id: self.id,name: self.email.split(/@/)[0],facebook_url: "https://uk-ua.facebook.com/")
    		@userparam.save
    	end
 

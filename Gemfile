@@ -43,6 +43,8 @@ gem 'activeadmin'
 
 gem 'carrierwave', '~> 1.0'
 
+gem 'client_side_validations'
+
 gem 'simplecov', require: false, group: :test
 
 group :development, :test do

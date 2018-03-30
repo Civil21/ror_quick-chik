@@ -15,7 +15,8 @@ class InstitutionsController < ApplicationController
     end
     @ratings=@ratings.where.not(user_id: current_user.id)
     @comments=InstitutionComment.where(institution_id: @institution.id)
-
+    @institutionComment=InstitutionComment.new
+    @ratingComment=RatingComment.new
   end
 
   def new
@@ -33,11 +34,13 @@ class InstitutionsController < ApplicationController
       
       @institution.category = @categories
       params[:work_time][:institution_id]=@institution.id
-      params[:work_time][:user_id]=current_user.id
       @workTime=WorkTime.create(workTime_params)
 
+      if @workTime.save
       redirect_to institution_path(@institution.id)
-
+      else
+        render 'new'
+      end
     else
       render 'new'
     end
