@@ -1,5 +1,8 @@
 <h2><%=@institution.name%></h2>
-Інші дані
+<%=@institution.description%>
+<%=@institution.phoneNumber%>
+<%=@institution.address%>
+
 <p>
 <%@institution.category.each do |category|%>
 <%=link_to category.name, category_path(category.name)%>
