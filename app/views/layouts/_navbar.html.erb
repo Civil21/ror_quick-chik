@@ -1,12 +1,4 @@
-<!-- 
-<h2>
-<%if user_signed_in? %>
-      	<%= link_to destroy_user_session_path, method: :delete do%><span class="glyphicon glyphicon-log-out"></span>Вихід<%end%><
-      	      <%else%>
-      	<%= link_to new_user_session_path do %><span class="glyphicon glyphicon-log-in"></span> Вхід<%end%>
-<%end%>
-</h2>
--->
+
 <%if user_signed_in? %>
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -20,16 +12,16 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+      <li><a href="#">PROFIL</a></li>
+        <li><a href="/pages/about">ABOUT</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">CATEGORY
             <span class="caret"></span>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="#">Pub</a></li>
-            <li><a href="#">Restoran</a></li>
-            <li><a href="#">Cafe</a></li>
+            <% Category.all.each do |category|%>
+            <li><%=link_to category.name , category_path(category.name)%></li>
+            <%end%> 
           </ul>
         </li>
         <li><%= link_to destroy_user_session_path, method: :delete do%><span class="glyphicon glyphicon-log-out"></span></li><%end%>
@@ -52,8 +44,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#home">HOME</a></li>
-        <li><a href="#contact">ABOUT</a></li>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/pages/about">ABOUT</a></li>
         <li><%= link_to new_user_session_path do %><span class="glyphicon glyphicon-log-in"></span></li>
         <%end%>
         </ul>
