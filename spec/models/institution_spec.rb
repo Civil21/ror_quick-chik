@@ -11,6 +11,13 @@ RSpec.describe Institution, type: :model do
 		end
 	end
 
+		context "when institution name is already taken" do
+	before do 
+		institution_dub = create(:institution)
+	end
+	it {should_not be_valid}
+end
+
 	context "association" do
   		it { should have_and_belong_to_many(:category)}
   		it { should have_one(:work_time)}
