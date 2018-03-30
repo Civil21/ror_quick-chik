@@ -6,5 +6,6 @@ FactoryBot.define do
     servise 1
     cleannes 1
     atmosphere 1
+    text "Some long enought valid text"
   end
 end
