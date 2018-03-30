@@ -1,32 +1,133 @@
-<h2><%=@institution.name%></h2>
-<%=@institution.description%>
-<%=@institution.phoneNumber%>
-<%=@institution.address%>
+<style>
 
-<p>
-<%@institution.category.each do |category|%>
-<%=link_to category.name, category_path(category.name)%>
-<%end%>
-</p>
+table {
+font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+text-align: center;
+border-collapse: collapse;
+border-spacing: 2px;
+background: #E1E3E0;
+border-radius: 7px;
+}
+th {
+font-size: 22px;
+font-weight: 300;
+padding: 5px 3px;
+border-bottom: 2px solid gray;
+color: #F56433;
+}
+tbody tr:nth-child(2) {
+border-bottom: 2px solid gray;
+}
+td {
+padding: 9px;
+color: #8D8173;
+}
+
+body {
+   background-color: #f0f0f0;
+}
+
+</style>
+
+
+</br>
+<div class="row text-center">
 <%@institution.images.each do |foto|%>
-<%=image_tag foto ,weight: 30, height: 30%>
+    <div class="col-sm-4">
+     
+<%=image_tag foto ,width: "60%", height: 250, class:"img-circle"%>
+
+
+</div>
 <%end%>
-<h2>Графік роботи</h2>
-<p><%=:monday%> <% if @workTime.mondayWork %><%=@workTime.mondayStart%> : <%=@workTime.mondayEnd%><%else%>Вихідний<%end%></p>
-<p><%=:tuesday%> <% if @workTime.tuesdayWork %><%=@workTime.tuesdayStart%> : <%=@workTime.tuesdayEnd%><%else%>Вихідний<%end%></p>
-<p><%=:wednesday %> <% if @workTime.wednesdayWork %><%=@workTime.wednesdayStart%> : <%=@workTime.wednesdayEnd%><%else%>Вихідний<%end%></p>
-<p><%=:thursday%> <% if @workTime.thursdayWork %><%=@workTime.thursdayStart%> : <%=@workTime.thursdayEnd%><%else%>Вихідний<%end%></p>
-<p><%=:friday%> <% if @workTime.fridayWork %><%=@workTime.fridayStart%> : <%=@workTime.fridayEnd%><%else%>Вихідний<%end%></p>
-<p><%=:saturday%> <% if @workTime.saturdayWork %><%=@workTime.saturdayStart%> : <%=@workTime.saturdayEnd%><%else%>Вихідний<%end%></p>
-<p><%=:sunday%> <% if @workTime.sundayWork %><%=@workTime.sundayStart%> : <%=@workTime.sundayEnd%><%else%>Вихідний<%end%></p>
+</div>
+
+</br>
+<div class="container-fluid text-center">
+  <h1 style="font-family: Century Gothic; color: #8f8f90;"><%=@institution.name%></h1>
+
+
+</div>
+
+
+<div class="container-fluid text-center">
+<h6><%@institution.category.each do |category|%>
+  <a><%=link_to category.name, category_path(category.name)%></a> ~
+<%end%>
+</h6>
+</div>
 
 <hr>
-<h3>Середній рейтинг закладу:</h3>
-	kitchen: <div id="institution_kitchen"></div>
-	servise: <div id="institution_servise"></div>
-	cleannes: <div id="institution_cleannes"></div>
-	atmosphere: <div id="institution_atmosphere"></div>
+ <div style="margin-right: 40%; margin-left: 10%;"><h5 style="text-align: left; color: #747474; font-family: Times New Roman;"><%=@institution.description%></br></h5></div>
+<hr>
 
+
+<div style="margin-right: 260px; margin-left: 260px;">
+<table>
+<tr><th colspan="2" style="text-align: center;">Графік роботи</th></tr>  
+  <tr>
+    <td> WorkDay </td>
+    <td> WorkTime </td>    
+  </tr>
+  <tr>
+    <td><b><%=:Monday%></b></td> 
+    <td> <% if @workTime.mondayWork %><%=@workTime.mondayStart%> - 
+    <%=@workTime.mondayEnd%><%else%>Вихідний<%end%></p></td>
+  </tr>
+  <tr>
+    <td><b><%=:Tuesday%></b></td> 
+    <td> <% if @workTime.tuesdayWork %><%=@workTime.tuesdayStart%> -
+    <%=@workTime.tuesdayEnd%><%else%> Вихідний<%end%></p></td>
+  </tr>
+  <tr>
+    <td><b><%=:Wednesday %></b></td> 
+    <td> <% if @workTime.wednesdayWork %><%=@workTime.wednesdayStart%> - <%=@workTime.wednesdayEnd%><%else%>Вихідний<%end%></p></td>
+  </tr>
+  <tr>
+    <td><b><%=:Thursday%></b></td> 
+    <td> <% if @workTime.thursdayWork %> <%=@workTime.thursdayStart%> - <%=@workTime.thursdayEnd%><%else%>Вихідний<%end%></p></td>
+  </tr>
+  <tr>
+    <td><b><%=:Friday%></b></td> 
+    <td> <% if @workTime.fridayWork %><%=@workTime.fridayStart%> - <%=@workTime.fridayEnd%><%else%>Вихідний<%end%></p></td>
+  </tr>
+  <tr>
+    <td><b><%=:Saturday%></b></td> 
+    <td> <% if @workTime.saturdayWork %><%=@workTime.saturdayStart%> - <%=@workTime.saturdayEnd%><%else%><p>Вихідний</p><%end%></p></td>
+  </tr>
+    <tr>
+    <td><b><%=:Sunday%></b></td> 
+    <td> <% if @workTime.sundayWork %><%=@workTime.sundayStart%> - <%=@workTime.sundayEnd%><%else%><p>Вихідний</p><%end%></p></td>
+  </tr>
+</table>
+<div class="container-fluid text-center">
+<%=@institution.phoneNumber%> |
+<%=@institution.address%>
+</div>
+</div>
+
+
+<div style="background-color: #7b8a72;" >
+<hr>
+<div class="container-fluid" >
+  <div class="text-center">
+    <h2>Рейтинг</h2>
+  </div>
+  <div style="text-align: center;">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+<h3>Середній рейтинг закладу:</h3>
+        </div>
+          <div class="panel-body">
+	Kitchen: <div id="institution_kitchen"></div>
+	Servise: <div id="institution_servise"></div>
+	Cleannes: <div id="institution_cleannes"></div>
+	Atmosphere: <div id="institution_atmosphere"></div>
+          </div>
+        </div>
+      </div>
 <%if @rating.nil? %>
 
 	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
@@ -34,24 +135,42 @@
 	<%end%>
 
 <%else%>
-<hr>
-<h3>Ваша Рекомендація:</h3>
+ <div class="col-sm-6">
+      <div class="panel panel-default text-center">
+        <div class="panel-heading">
+<h3>Залиште відгук:</h3>
+        </div>
+        <div class="panel-body">
   <%= render @rating%>
+        </div>
+      </div>
+    </div>
 <%end%>
-<hr>
-<h3>Рекомендації користувачів:</h3>
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="container-fluid" >
+  <div class="text-center">
+<h2>Відгуки та поради:</h2>
+</div>
+</div>
 	<%= render @ratings%>
 
-<hr>
-<h2>Кометраі Закладу</h2>
-<button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">
+
+
+<div style="text-align: center;"><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">
   	<span class="glyphicon glyphicon-plus">Новий комент</span>
-</button>
+</button></div>
+<div>
 <div id="comment" class="collapse">
 	<%=form_for :institution_comment, url:institution_institution_comments_path(@institution.id) do |f|%>
   		<%=render "institution_comments/form", f:f%>
   	<%end%>
 </div>
+<div style="margin-left: 2%;">
 <% @comments.each do |comment| %>
 <%= render 'institution_comments/institution_comment', comment:comment%>
 <%end%>
@@ -79,3 +198,5 @@
 
 
 </script>
+</div>
+</div>
