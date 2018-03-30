@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :work_time do
     institution_id 1
-    mondeyWork false
-    mondeyStart "08:00"
-    mondeyEnd "20:00"
+    mondayWork false
+    mondayStart "08:00"
+    mondayEnd "20:00"
 
     tuesdayWork false
     tuesdayStart "08:00"
