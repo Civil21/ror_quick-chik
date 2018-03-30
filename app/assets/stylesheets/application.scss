@@ -14,6 +14,10 @@
  *= require_self
  */
 
+a {
+    text-decoration: none !important;
+}
+
  .navbar {
     margin-bottom: 0;
     background-color: #2d2d30;
@@ -62,6 +66,8 @@
 .dropdown-menu li a:hover {
     background-color: gray !important;
 } 
+
+
 
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
