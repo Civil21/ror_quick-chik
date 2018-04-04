@@ -7,10 +7,14 @@ class InstitutionCommentsController < ApplicationController
 		params[:institution_comment][:user_id]=current_user.id
 		pp @comment=InstitutionComment.create(institution_comment_params)
 		if @comment.save
-		redirect_to institution_path(params[:institution_id])
+		  redirect_to institution_path(params[:institution_id])
 		else
-      
-		end
+      @comment.errors.full_messages.each do |msg|  
+        @msg = msg
+      end  
+      flash[:notice] = "#{@msg}"
+      redirect_to institution_path(params[:institution_id])
+    end
 	end
 
 	def update

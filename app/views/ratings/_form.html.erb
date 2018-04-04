@@ -1,5 +1,8 @@
 <hr>
 <h3>Написати рекомендацію :</h3>
+<% if flash[:notice] %>
+  <div class=""> <%= flash[:notice] %> </div>
+<% end %>
     	<%=f.label :kitchen%>
       <div id="kitchen"></div>
     	<%=f.label :servise%>

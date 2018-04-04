@@ -19,7 +19,7 @@ Atmosphere: <div id="user_atmosphere<%=rating.id%>"></div> </br>
     <span class="glyphicon glyphicon-plus">Відповісти</span>
 </button>
 <div id="rating_comment_<%=rating.id%>" class="collapse">
-<%=form_for @ratingComment ,url:rating_rating_comments_path(rating.id), validate: true  do |f|%>
+<%=form_for @ratingComment ,url:rating_rating_comments_path(rating.id) do |f|%>
 <%=render "rating_comments/form" ,f:f%>
 <%end%>
 </div>

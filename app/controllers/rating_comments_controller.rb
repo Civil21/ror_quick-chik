@@ -8,9 +8,13 @@ class RatingCommentsController < ApplicationController
 		pp @comment=RatingComment.create(rating_comment_params)
 		if @comment.save
 		redirect_to institution_path(Rating.find(params[:rating_id]).institution.id)
-		else
-      
-		end
+    else
+      @comment.errors.full_messages.each do |msg|  
+        @msg = msg
+      end  
+      flash[:notice] = "#{@msg}"
+      redirect_to institution_path(Rating.find(params[:rating_id]).institution.id)
+    end
 	end
 
 	def update

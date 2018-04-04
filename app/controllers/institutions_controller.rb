@@ -72,7 +72,11 @@ class InstitutionsController < ApplicationController
     if @rating.nil?
     @rating = Rating.create(ratign_params)
     else
-
+      @rating.errors.full_messages.each do |msg|  
+        @msg = msg
+      end  
+      flash[:notice] = "#{@msg}"
+      redirect_to institution_path(@institution.id)
     end
     kitchen = servise = cleannes = atmosphere =0
 

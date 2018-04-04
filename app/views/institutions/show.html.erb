@@ -166,7 +166,7 @@ body {
 </button></div>
 <div>
 <div id="comment" class="collapse">
-	<%=form_for @institutionComment, url:institution_institution_comments_path(@institution.id), validate: true  do |f|%>
+	<%=form_for @institutionComment, url:institution_institution_comments_path(@institution.id) do |f|%>
   		<%=render "institution_comments/form", f:f%>
   	<%end%>
 </div>
