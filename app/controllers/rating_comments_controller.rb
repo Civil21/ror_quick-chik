@@ -5,16 +5,16 @@ class RatingCommentsController < ApplicationController
 	def create
 		params[:rating_comment][:rating_id]=params[:rating_id]
 		params[:rating_comment][:user_id]=current_user.id
-		pp @comment=RatingComment.create(rating_comment_params)
+		@comment=RatingComment.create(rating_comment_params)
 		if @comment.save
-		redirect_to institution_path(Rating.find(params[:rating_id]).institution.id)
-    else
-      @comment.errors.full_messages.each do |msg|  
-        @msg = msg
-      end  
-      flash[:notice] = "#{@msg}"
-      redirect_to institution_path(Rating.find(params[:rating_id]).institution.id)
-    end
+			redirect_to institution_path(Rating.find(params[:rating_id]).institution.id)
+    	else
+      		@comment.errors.full_messages.each do |msg|  
+        		@msg = msg
+      		end  
+      		flash[:notice] = "#{@msg}"
+      		redirect_to institution_path(Rating.find(params[:rating_id]).institution.id)
+    	end
 	end
 
 	def update

@@ -15,6 +15,8 @@ class InstitutionsController < ApplicationController
     end
     @ratings=@ratings.where.not(user_id: current_user.id)
     @comments=InstitutionComment.where(institution_id: @institution.id)
+
+    #validation
     @institutionComment=InstitutionComment.new
     @ratingComment=RatingComment.new
   end
@@ -30,17 +32,12 @@ class InstitutionsController < ApplicationController
     @categories=Category.find(params[:category_ids])
     @institution=Institution.create(institution_params)
 
-    if @institution.save 
-      
-      @institution.category = @categories
-      params[:work_time][:institution_id]=@institution.id
-      @workTime=WorkTime.create(workTime_params)
+    @institution.category = @categories
+    params[:work_time][:institution_id]=@institution.id
+    @workTime=WorkTime.create(workTime_params)
 
-      if @workTime.save
+    if @institution.save && @workTime.save
       redirect_to institution_path(@institution.id)
-      else
-        render 'new'
-      end
     else
       render 'new'
     end

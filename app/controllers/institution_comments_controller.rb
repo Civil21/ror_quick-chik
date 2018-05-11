@@ -5,7 +5,7 @@ class InstitutionCommentsController < ApplicationController
 	def create
 		params[:institution_comment][:institution_id]=params[:institution_id]
 		params[:institution_comment][:user_id]=current_user.id
-		pp @comment=InstitutionComment.create(institution_comment_params)
+		@comment=InstitutionComment.create(institution_comment_params)
 		if @comment.save
 		  redirect_to institution_path(params[:institution_id])
 		else
