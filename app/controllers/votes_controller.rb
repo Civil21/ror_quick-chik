@@ -19,7 +19,7 @@ class VotesController < ApplicationController
 	end
 
 	def negativ_vote
-		if current_user.id != @object.user.i
+		if current_user.id != @object.user.id
 			if @vote==nil
 		    	@vote=Vote.create(user_id: current_user.id,resource_type: @object.class.name,resource_id: @object.id,score: -1)
 		    	@user.score+=-1

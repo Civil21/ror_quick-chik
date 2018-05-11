@@ -129,7 +129,7 @@ body {
         </div>
       </div>
 <%if @rating.nil? %>
-
+ <%@rating=Rating.new%>
 	<%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
 		<%=render 'ratings/form', f:f%>
 	<%end%>
