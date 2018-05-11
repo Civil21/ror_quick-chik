@@ -27,38 +27,6 @@ class InstitutionCommentsController < ApplicationController
 		redirect_to institution_path(params[:institution_id])
 	end
 
-	def positiv_vote
-    	@vote=InstitutionCommentVote.find_by(user_id: current_user.id,institution_comment_id: @institution_comment.id)
-    	if @vote==nil && @institution_comment.user.id != current_user.id
-      		@vote=InstitutionCommentVote.create(user_id: current_user.id,institution_comment_id: @institution_comment.id,score: 1)
-      		@user =Userparam.find_by(user_id: @institution_comment.user.id)
-      		@user.update(score: @user.score+1)
-    	else
-      		if @institution_comment.user.id != current_user.id && @vote.score==-1;
-        		@vote.update(score: 1)
-        	@user =Userparam.find_by(user_id: @institution_comment.user.id)
-      		@user.update(score: @user.score+2)
-      		end
-    	end
-    	redirect_to institution_path(@institution_comment.institution.id)
-  	end
-
-  	def negativ_vote
-    	@vote=InstitutionCommentVote.find_by(user_id: current_user.id,institution_comment_id: @institution_comment.id)
-    	if @vote==nil && @institution_comment.user.id != current_user.id
-      		@vote=InstitutionCommentVote.create(user_id: current_user.id,institution_comment_id: @institution_comment.id,score: -1)
-      		@user =Userparam.find_by(user_id: @institution_comment.user.id)
-      		@user.update(score: @user.score-1)
-    	else
-      		if @institution_comment.user.id != current_user.id && @vote.score==1;
-        		@vote.update(score: -1)
-        		@user =Userparam.find_by(user_id: @institution_comment.user.id)
-      			@user.update(score: @user.score-2)
-      		end
-    	end
-    	redirect_to institution_path(@institution_comment.institution.id)
-  	end
-
 	private
 
 	def institution_comment_params

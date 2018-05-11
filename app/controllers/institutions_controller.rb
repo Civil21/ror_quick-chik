@@ -91,41 +91,7 @@ class InstitutionsController < ApplicationController
     @institution.update(kitchen: kitchen/ratings.count, servise: servise/ratings.count, cleannes: cleannes/ratings.count, atmosphere: atmosphere/ratings.count)
     redirect_to institution_path(@institution.id)
   end
-
-  def positiv_vote
-    @rating=Rating.find(params[:id])
-    @vote=RatingVote.find_by(user_id: current_user.id,rating_id: @rating.id)
-    if @vote==nil && @rating.user.id != current_user.id
-      @vote=RatingVote.create(user_id: current_user.id,rating_id: @rating.id,score: 1)
-      @user =Userparam.find_by(user_id: @rating.user.id)
-      @user.update(score: @user.score+1)
-    else
-      if @rating.user.id != current_user.id && @vote.score==-1;
-        @vote.update(score: 1)
-        @user =Userparam.find_by(user_id: @rating.user.id)
-        @user.update(score: @user.score+2)
-      end
-    end
-    redirect_to institution_path(@rating.institution.id)
-  end
-
-  def negativ_vote
-    @rating=Rating.find(params[:id])
-    @vote=RatingVote.find_by(user_id: current_user.id,rating_id: @rating.id)
-    if @vote==nil && @rating.user.id != current_user.id
-      @vote=RatingVote.create(user_id: current_user.id,rating_id: @rating.id,score: -1)
-      @user =Userparam.find_by(user_id: @rating.user.id)
-      @user.update(score: @user.score-1)
-    else
-      if @rating.user.id != current_user.id && @vote.score==1;
-        @vote.update(score: -1)
-        @user =Userparam.find_by(user_id: @rating.user.id)
-        @user.update(score: @user.score-2)
-      end
-    end
-    redirect_to institution_path(@rating.institution.id)
-  end
-
+  
   private
 
   def get_institution
