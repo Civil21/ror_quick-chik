@@ -21,7 +21,6 @@ class WorkTime < ApplicationRecord
      	lendth: { in: 5 },
       	:with => /\(?[0-9]{2}\)?:[0-9]{2}/
 
-
     validates_format_of :fridayStart, 
       	allow_blank: true,
      	lendth: { in: 5 },
@@ -56,7 +55,6 @@ class WorkTime < ApplicationRecord
       	allow_blank: true,
      	lendth: { in: 5 },
       	:with => /\(?[0-9]{2}\)?:[0-9]{2}/
-
 
     validates_format_of :fridayEnd, 
       	allow_blank: true,

@@ -5,6 +5,6 @@
       <span class="glyphicon glyphicon-plus"></span>
     <%end%>
      <%=Vote.where(resource_type:comment.class.name,resource_id:comment.id).sum(:score)%>
-    <%=link_to negativ_vote_path(comment.class,name,comment.id) do%>
+    <%=link_to negativ_vote_path(comment.class.name,comment.id) do%>
       <span class="glyphicon glyphicon-minus"></span>
     <%end%>
