@@ -13,7 +13,9 @@ class InstitutionsController < ApplicationController
     @ratings.each do |rating| 
       @ratingComments[rating.id]=RatingComment.where(rating_id: rating.id)
     end
-    @ratings=@ratings.where.not(user_id: current_user.id)
+    if current_user != nil
+      @ratings=@ratings.where.not(user_id: current_user.id)
+    end
     @comments=InstitutionComment.where(institution_id: @institution.id)
 
     #validation

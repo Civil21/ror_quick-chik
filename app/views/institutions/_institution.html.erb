@@ -1,11 +1,16 @@
-<div class="container-fluid" >
-  <div class="text-center">
-<h2><%= @category.name %></h2>
-</div>
-</div>
-<div style="margin-left: 10%;">
-<h3><%=link_to institution.name, institution_path(institution.id)%></h3>
-</div>
+
+<article class="panel panel-default" style="margin-left: 10%; margin-right: 10%">
+	<div class="panel-heading">
+		<h1 class="panel-title"><%=link_to institution.name, institution_path(institution.id)%></h1> 
+		<h6> ~ <%=render institution.category%></h6>
+	</div>
+	<div class="panel-body">
+		<%= institution.description %>
+	</div>
+	<div class="panel-footer">
+		<%=institution.phoneNumber%> | <%=institution.address%>
+	</div>
+</article>
 
 
 
