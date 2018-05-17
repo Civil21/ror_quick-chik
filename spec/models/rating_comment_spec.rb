@@ -16,6 +16,5 @@ RSpec.describe RatingComment, type: :model do
 	context "association" do
   		it { should belong_to (:user)}
   		it { should belong_to (:rating)}
-  		it { should have_many (:rating_comment_votes)}
   	end
 end

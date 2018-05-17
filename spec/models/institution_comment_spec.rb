@@ -16,6 +16,5 @@ RSpec.describe InstitutionComment, type: :model do
 	context "association" do
   		it { should belong_to (:user)}
   		it { should belong_to (:institution)}
-  		it { should have_many (:institution_comment_votes)}
   	end
 end

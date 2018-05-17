@@ -13,8 +13,5 @@ RSpec.describe User, type: :model do
   		it { should have_many(:ratings)}
   		it { should have_many(:rating_comments)}
   		it { should have_many(:institution_comments)}
-  		it { should have_many(:rating_comment_votes)}
-  		it { should have_many(:institution_comment_votes)}
-  		it { should have_many(:rating_votes)}
   	end
 end

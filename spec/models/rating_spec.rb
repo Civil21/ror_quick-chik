@@ -17,6 +17,5 @@ RSpec.describe Rating, type: :model do
   		it { should belong_to (:user)}
   		it { should belong_to (:institution)}
   		it { should have_many (:rating_comments)}
-  		it { should have_many (:rating_votes)}
   	end
 end
