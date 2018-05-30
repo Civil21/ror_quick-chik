@@ -40,11 +40,11 @@ let!(:userparam){create(:userparam ,user_id: subject.current_user.id )}
       end
     end
 
-   # describe 'DELETE #destroy' do
-    #  it "should delete userparam and redirect to root" do
-     #   delete :destroy, params: {id: subject.current_user.userparam.id}
-       # expect(subject.current_user).to eq(nil)
-      #  expect(response).to redirect_to root_path
-      #end
-    #end
+ #   describe 'DELETE #destroy' do
+  #    it "should delete userparam and redirect to root" do
+   #    delete :destroy, params: {id: subject.current_user.userparam.id, email: "test@gmail.com"}
+    #    expect(subject.current_user.userparam).to_not eq(nil)
+     #   expect(response).to redirect_to root_path
+     # end
+   # end
 end

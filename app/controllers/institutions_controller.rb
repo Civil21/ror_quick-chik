@@ -5,7 +5,7 @@ class InstitutionsController < ApplicationController
   def index
     @institutions=Institution.all
   end
-
+  
   def show
     @rating=Rating.find_by(user_id: current_user,institution_id: @institution.id)
     @ratings=Rating.where(institution_id: @institution.id)
