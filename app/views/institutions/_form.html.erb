@@ -20,7 +20,7 @@
 <%=f.text_field :phoneNumber%></p>
 
 <p>Графік роботи</p>
-<%=fields_for @workTime do |t|%>
+<%=fields_for @workTime , validate: true  do |t|%>
 <p><%=:monday%><br/>
 <%=t.check_box :mondayWork%> <%=t.text_field :mondayStart%> : <%=t.text_field :mondayEnd%></p>
 

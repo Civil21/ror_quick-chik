@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Rating, type: :model do
+RSpec.describe InstitutionComment, type: :model do
 	let!(:user){create(:user)}
-	let!(:institution){create(:institution)}
+  	let!(:institution){create(:institution)}
 	subject{
-		build(:rating)
+		build(:institution_comment)
 	}
 
 	context "validation" do
@@ -16,7 +16,6 @@ RSpec.describe Rating, type: :model do
 	context "association" do
   		it { should belong_to (:user)}
   		it { should belong_to (:institution)}
-  		it { should have_many (:rating_comments)}
-  		it { should have_many (:rating_votes)}
+  		it { should have_many (:institution_comment_votes)}
   	end
 end

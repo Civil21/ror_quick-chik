@@ -13,9 +13,14 @@ class InstitutionsController < ApplicationController
     @ratings.each do |rating| 
       @ratingComments[rating.id]=RatingComment.where(rating_id: rating.id)
     end
-    @ratings=@ratings.where.not(user_id: current_user.id)
+    if current_user != nil
+      @ratings=@ratings.where.not(user_id: current_user.id)
+    end
     @comments=InstitutionComment.where(institution_id: @institution.id)
 
+    #validation
+    @institutionComment=InstitutionComment.new
+    @ratingComment=RatingComment.new
   end
 
   def new
@@ -29,15 +34,12 @@ class InstitutionsController < ApplicationController
     @categories=Category.find(params[:category_ids])
     @institution=Institution.create(institution_params)
 
-    if @institution.save 
-      
-      @institution.category = @categories
-      params[:work_time][:institution_id]=@institution.id
-      params[:work_time][:user_id]=current_user.id
-      @workTime=WorkTime.create(workTime_params)
+    @institution.category = @categories
+    params[:work_time][:institution_id]=@institution.id
+    @workTime=WorkTime.create(workTime_params)
 
+    if @institution.save && @workTime.save
       redirect_to institution_path(@institution.id)
-
     else
       render 'new'
     end
@@ -69,7 +71,11 @@ class InstitutionsController < ApplicationController
     if @rating.nil?
     @rating = Rating.create(ratign_params)
     else
-
+      @rating.errors.full_messages.each do |msg|  
+        @msg = msg
+      end  
+      flash[:notice] = "#{@msg}"
+      redirect_to institution_path(@institution.id)
     end
     kitchen = servise = cleannes = atmosphere =0
 
@@ -84,41 +90,7 @@ class InstitutionsController < ApplicationController
     @institution.update(kitchen: kitchen/ratings.count, servise: servise/ratings.count, cleannes: cleannes/ratings.count, atmosphere: atmosphere/ratings.count)
     redirect_to institution_path(@institution.id)
   end
-
-  def positiv_vote
-    @rating=Rating.find(params[:id])
-    @vote=RatingVote.find_by(user_id: current_user.id,rating_id: @rating.id)
-    if @vote==nil && @rating.user.id != current_user.id
-      @vote=RatingVote.create(user_id: current_user.id,rating_id: @rating.id,score: 1)
-      @user =Userparam.find_by(user_id: @rating.user.id)
-      @user.update(score: @user.score+1)
-    else
-      if @rating.user.id != current_user.id && @vote.score==-1;
-        @vote.update(score: 1)
-        @user =Userparam.find_by(user_id: @rating.user.id)
-        @user.update(score: @user.score+2)
-      end
-    end
-    redirect_to institution_path(@rating.institution.id)
-  end
-
-  def negativ_vote
-    @rating=Rating.find(params[:id])
-    @vote=RatingVote.find_by(user_id: current_user.id,rating_id: @rating.id)
-    if @vote==nil && @rating.user.id != current_user.id
-      @vote=RatingVote.create(user_id: current_user.id,rating_id: @rating.id,score: -1)
-      @user =Userparam.find_by(user_id: @rating.user.id)
-      @user.update(score: @user.score-1)
-    else
-      if @rating.user.id != current_user.id && @vote.score==1;
-        @vote.update(score: -1)
-        @user =Userparam.find_by(user_id: @rating.user.id)
-        @user.update(score: @user.score-2)
-      end
-    end
-    redirect_to institution_path(@rating.institution.id)
-  end
-
+  
   private
 
   def get_institution

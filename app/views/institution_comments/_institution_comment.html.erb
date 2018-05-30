@@ -5,11 +5,11 @@
 <h4><%=comment.text%></h4>
 <hr>
 <h6>Author: <%=comment.user.email%></h6>
-    <%=link_to institution_comment_positiv_path(comment.id) do%>
+    <%=link_to positiv_vote_path(comment.class.name,comment.id) do%>
       <span class="glyphicon glyphicon-plus"></span>
     <%end%>
-    <%=InstitutionCommentVote.where(institution_comment_id:comment.id).sum(:score)%>
-    <%=link_to institution_comment_negativ_path(comment.id) do%>
+    <%=Vote.where(resource_type:comment.class.name,resource_id:comment.id).sum(:score)%>
+    <%=link_to negativ_vote_path(comment.class.name,comment.id) do%>
       <span class="glyphicon glyphicon-minus"></span>
     <%end%>
 </div>

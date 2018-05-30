@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329220402) do
+ActiveRecord::Schema.define(version: 20180511091540) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -54,14 +54,6 @@ ActiveRecord::Schema.define(version: 20180329220402) do
     t.integer "institution_id"
   end
 
-  create_table "institution_comment_votes", force: :cascade do |t|
-    t.integer "institution_comment_id"
-    t.integer "user_id"
-    t.integer "score", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "institution_comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "institution_id"
@@ -84,14 +76,6 @@ ActiveRecord::Schema.define(version: 20180329220402) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rating_comment_votes", force: :cascade do |t|
-    t.integer "rating_comment_id"
-    t.integer "user_id"
-    t.integer "score", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "rating_comments", force: :cascade do |t|
     t.integer "rating_id"
     t.integer "user_id"
@@ -100,24 +84,16 @@ ActiveRecord::Schema.define(version: 20180329220402) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rating_votes", force: :cascade do |t|
-    t.integer "rating_id"
-    t.integer "user_id"
-    t.integer "score", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "ratings", force: :cascade do |t|
     t.integer "institution_id"
     t.integer "user_id"
+    t.string "text"
     t.integer "kitchen", default: 1, null: false
     t.integer "servise", default: 1, null: false
     t.integer "cleannes", default: 1, null: false
     t.integer "atmosphere", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "text"
   end
 
   create_table "userparams", force: :cascade do |t|
@@ -129,10 +105,10 @@ ActiveRecord::Schema.define(version: 20180329220402) do
     t.string "country"
     t.string "city"
     t.string "adress"
+    t.integer "score", default: 0, null: false
+    t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "avatar"
-    t.integer "score", default: 0, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -150,6 +126,15 @@ ActiveRecord::Schema.define(version: 20180329220402) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "work_times", force: :cascade do |t|

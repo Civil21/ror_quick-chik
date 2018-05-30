@@ -1,10 +1,10 @@
 <div>
 
-    <%=link_to rating_positiv_path(rating.id) do%>
+    <%=link_to positiv_vote_path(rating.class.name,rating.id) do%>
       <span class="glyphicon glyphicon-plus"></span>
     <%end%>
-    <%=RatingVote.where(rating_id:rating.id).sum(:score)%>
-    <%=link_to rating_negativ_path(rating.id) do%>
+     <%=Vote.where(resource_type:rating.class.name,resource_id:rating.id).sum(:score)%>
+    <%=link_to negativ_vote_path(rating.class.name,rating.id) do%>
       <span class="glyphicon glyphicon-minus"></span>
     <%end%>
 Kitchen: <div id="user_kitchen<%=rating.id%>"></div>
@@ -19,7 +19,7 @@ Atmosphere: <div id="user_atmosphere<%=rating.id%>"></div> </br>
     <span class="glyphicon glyphicon-plus">Відповісти</span>
 </button>
 <div id="rating_comment_<%=rating.id%>" class="collapse">
-<%=form_for :rating_comment ,url:rating_rating_comments_path(rating.id) do |f|%>
+<%=form_for @ratingComment ,url:rating_rating_comments_path(rating.id) do |f|%>
 <%=render "rating_comments/form" ,f:f%>
 <%end%>
 </div>

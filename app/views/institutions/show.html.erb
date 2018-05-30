@@ -32,14 +32,11 @@ body {
 
 </br>
 <div class="row text-center">
-<%@institution.images.each do |foto|%>
-    <div class="col-sm-4">
-     
-<%=image_tag foto ,width: "60%", height: 250, class:"img-circle"%>
-
-
-</div>
-<%end%>
+  <%@institution.images.each do |foto|%>
+    <div class="col-sm-4">   
+      <%=image_tag foto ,width: "60%", height: 250, class:"img-circle"%>
+    </div>
+  <%end%>
 </div>
 
 </br>
@@ -51,10 +48,7 @@ body {
 
 
 <div class="container-fluid text-center">
-<h6><%@institution.category.each do |category|%>
-  <a><%=link_to category.name, category_path(category.name)%></a> ~
-<%end%>
-</h6>
+  <h6> ~ <%=render @institution.category%></h6>
 </div>
 
 <hr>
@@ -129,8 +123,8 @@ body {
         </div>
       </div>
 <%if @rating.nil? %>
-
-	<%= form_for :rating , url:rating_institution_path(@institution.id), method: :patch do |f| %>
+ <%@rating=Rating.new%>
+	<%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
 		<%=render 'ratings/form', f:f%>
 	<%end%>
 
@@ -166,7 +160,7 @@ body {
 </button></div>
 <div>
 <div id="comment" class="collapse">
-	<%=form_for :institution_comment, url:institution_institution_comments_path(@institution.id) do |f|%>
+	<%=form_for @institutionComment, url:institution_institution_comments_path(@institution.id) do |f|%>
   		<%=render "institution_comments/form", f:f%>
   	<%end%>
 </div>
