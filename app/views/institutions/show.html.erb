@@ -98,11 +98,12 @@ body {
 <%=@institution.phoneNumber%> |
 <%=@institution.address%>
 </div>
-<div class="static-map" align="center">
-<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?size=640x320&sensor=false&zoom=16&markers=#{@institution.latitude}%2C#{@institution.longitude}&key=AIzaSyAplIJPFAMB2zJBfoXqtCBRkwu4WKvq7u4"%>
+<%if not @institution.address.equal?("") %>
+  <div class="static-map" align="center">
+    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?size=640x320&sensor=false&zoom=16&markers=#{@institution.latitude}%2C#{@institution.longitude}&key=AIzaSyAplIJPFAMB2zJBfoXqtCBRkwu4WKvq7u4"%>
+  </div>
+<%end%>
 </div>
-</div>
-
 
 <div style="background-color: #7b8a72;" >
 <hr>
@@ -111,38 +112,43 @@ body {
     <h2>Рейтинг</h2>
   </div>
   <div style="text-align: center;">
-  <div class="row">
-    <div class="col-sm-6">
+      <div>
       <div class="panel panel-default text-center">
         <div class="panel-heading">
 <h3>Середній рейтинг закладу:</h3>
         </div>
           <div class="panel-body">
-	Kitchen: <div id="institution_kitchen"></div>
-	Servise: <div id="institution_servise"></div>
-	Cleannes: <div id="institution_cleannes"></div>
-	Atmosphere: <div id="institution_atmosphere"></div>
+  Kitchen: <div id="institution_kitchen"></div>
+  Servise: <div id="institution_servise"></div>
+  Cleannes: <div id="institution_cleannes"></div>
+  Atmosphere: <div id="institution_atmosphere"></div>
           </div>
         </div>
       </div>
-<%if @rating.nil? %>
- <%@rating=Rating.new%>
-	<%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
-		<%=render 'ratings/form', f:f%>
-	<%end%>
 
-<%else%>
- <div class="col-sm-6">
+<div style="text-align: center;">
+  <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#rating">
+    <span class="glyphicon glyphicon-plus">Добавити відгук</span>
+  </button>
+</div>
+<div id="rating" class="row collapse">
+  <%if @rating.nil? %>
+   <%@rating=Rating.new%>
+  	<%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
+  		<%=render 'ratings/form', f:f%>
+	 <%end%>
+  <%else%>
+   <div class="col-sm-6">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
-<h3>Залиште відгук:</h3>
+          <h3>Залиште відгук:</h3>
         </div>
         <div class="panel-body">
-  <%= render @rating%>
+          <%= render @rating%>
         </div>
       </div>
     </div>
-<%end%>
+  <%end%>
 </div>
 </div>
 </div>
@@ -158,8 +164,8 @@ body {
 
 
 
-<div style="text-align: center;"><button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#comment">
-  	<span class="glyphicon glyphicon-plus">Новий комент</span>
+<div style="text-align: center;"><button type="button" class="btn btn-default" data-toggle="collapse" data-target="#comment">
+    <span class="glyphicon glyphicon-plus">Новий комент</span>
 </button></div>
 <div>
 <div id="comment" class="collapse">
@@ -171,6 +177,9 @@ body {
 <% @comments.each do |comment| %>
 <%= render 'institution_comments/institution_comment', comment:comment%>
 <%end%>
+</div>
+</div>
+
 <script>
     $('#institution_kitchen').raty({
       path: '/assets',
@@ -192,8 +201,4 @@ body {
       readOnly:true,
       score: <%=@institution.atmosphere%>
     });
-
-
 </script>
-</div>
-</div>
