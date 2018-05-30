@@ -98,6 +98,9 @@ body {
 <%=@institution.phoneNumber%> |
 <%=@institution.address%>
 </div>
+<div class="static-map" align="center">
+<%= image_tag "https://maps.googleapis.com/maps/api/staticmap?size=640x320&sensor=false&zoom=16&markers=#{@institution.latitude}%2C#{@institution.longitude}&key=AIzaSyAplIJPFAMB2zJBfoXqtCBRkwu4WKvq7u4"%>
+</div>
 </div>
 
 

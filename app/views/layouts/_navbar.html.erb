@@ -18,7 +18,7 @@
           </a>
           <ul class="dropdown-menu">
             <% Category.all.each do |category|%>
-            <li><%=link_to category.name , category_path(category.name)%></li>
+            <li data-toggle="modal"><%=link_to category.name , category_path(category.name)%></li>
             <%end%> 
           </ul>
         </li>
@@ -28,7 +28,7 @@
               <span class="glyphicon glyphicon-user"></span>
             </a>
             <ul class="dropdown-menu"> 
-              <li><b> <%= current_user.userparam.name%> </b></li>
+
               <li>
               <%=link_to "Профіль", userparam_path(current_user.userparam.id)%>
               </li>

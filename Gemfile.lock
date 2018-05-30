@@ -109,6 +109,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    geocoder (1.4.9)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     has_scope (0.7.1)
@@ -171,6 +172,7 @@ GEM
     rack (2.0.4)
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
+    railroady (1.5.3)
     rails (5.1.5)
       actioncable (= 5.1.5)
       actionmailer (= 5.1.5)
@@ -300,10 +302,12 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   factory_bot_rails
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
   puma (~> 3.7)
+  railroady
   rails (~> 5.1.5)
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
