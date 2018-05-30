@@ -1,7 +1,7 @@
 class InstitutionCommentsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :get_institution_comment, except:[:create]
-
+	
 	def create
 		params[:institution_comment][:institution_id]=params[:institution_id]
 		params[:institution_comment][:user_id]=current_user.id

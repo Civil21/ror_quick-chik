@@ -16,7 +16,7 @@ class UserparamsController < ApplicationController
 	end
 
 	def destroy
-		@userparam.destroy(userparam_params)
+		@userparam.destroy
 		redirect_to root_path
 	end
 

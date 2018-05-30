@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe InstitutionsController, type: :controller do
+  
 let!(:category) { create(:category) }
 
 login_user
