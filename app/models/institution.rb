@@ -2,10 +2,13 @@ class Institution < ApplicationRecord
    mount_uploaders :images, ImageUploader
   	serialize :images, JSON
     
-   has_and_belongs_to_many :category
-   has_one :work_time
-   has_many :ratings
-   has_many :institution_comments
+  has_and_belongs_to_many :category
+  has_one :work_time
+  has_many :ratings
+  has_many :institution_comments
+
+  geocoded_by :address   # can also be an IP address
+  after_validation :geocode,  :if => :address_changed?  # auto-fetch coordinates
 
    validates :name, length: { minimum: 3 }, presence: true, uniqueness: true
    validates :description, length: { in: 10..300 }, allow_blank: true
