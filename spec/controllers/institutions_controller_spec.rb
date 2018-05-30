@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe InstitutionsController, type: :controller do
-let!(:category) { build(:category, name: "Somename") }
+let!(:category) { create(:category) }
 
 login_user
 
-let!(:institution){create(:institution ,name: subject.name )}
+let!(:institution){create(:institution)}
 
 
   describe "GET #index" do

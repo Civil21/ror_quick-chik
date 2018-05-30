@@ -30,7 +30,6 @@ class InstitutionsController < ApplicationController
   end
 
   def create
-    
     @categories=Category.find(params[:category_ids])
     @institution=Institution.create(institution_params)
 
