@@ -10,6 +10,9 @@ class CreateUserparams < ActiveRecord::Migration[5.1]
       t.string :city
       t.string :adress
 
+      t.integer :score,  null: false,  default: 0
+      t.string :avatar
+
       t.timestamps
     end
   end

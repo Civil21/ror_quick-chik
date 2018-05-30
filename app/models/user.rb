@@ -10,9 +10,7 @@ class User < ApplicationRecord
    	has_many :ratings
    	has_many :rating_comments
    	has_many :institution_comments
-   	has_many :rating_votes
-   	has_many :rating_comment_votes
-   	has_many :institution_comment_votes
+   	has_many :votes
 
    	private
 

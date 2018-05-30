@@ -32,14 +32,11 @@ body {
 
 </br>
 <div class="row text-center">
-<%@institution.images.each do |foto|%>
-    <div class="col-sm-4">
-     
-<%=image_tag foto ,width: "60%", height: 250, class:"img-circle"%>
-
-
-</div>
-<%end%>
+  <%@institution.images.each do |foto|%>
+    <div class="col-sm-4">   
+      <%=image_tag foto ,width: "60%", height: 250, class:"img-circle"%>
+    </div>
+  <%end%>
 </div>
 
 </br>
@@ -51,10 +48,7 @@ body {
 
 
 <div class="container-fluid text-center">
-<h6><%@institution.category.each do |category|%>
-  <a><%=link_to category.name, category_path(category.name)%></a> ~
-<%end%>
-</h6>
+  <h6> ~ <%=render @institution.category%></h6>
 </div>
 
 <hr>
@@ -129,7 +123,7 @@ body {
         </div>
       </div>
 <%if @rating.nil? %>
-
+ <%@rating=Rating.new%>
 	<%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
 		<%=render 'ratings/form', f:f%>
 	<%end%>
