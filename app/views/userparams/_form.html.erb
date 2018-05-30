@@ -56,44 +56,7 @@ input {
   transition: box-shadow .5s ease;
 }
 input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
-</style>
 
-  <div class="login">
-  <h1 style="margin-right: 30%;">Edit your profile</h1>
-
-
-	<div style="margin-top: 3%;">
-	<%= f.text_field :name, class: 'form-signin',autofocus: true, placeholder: 'Name'%>
-	<div style="margin-top: 3%;">
-    <%= f.file_field :avatar, placeholder: 'avatar'%>
-    <div style="margin-top: 3%;">	
-	<%= f.text_field :full_name, class: 'form-signin', placeholder: 'Username'%>
-	<div style="margin-top: 3%;">
-	<%= f.text_field :facebook_url, class: 'form-signin', placeholder: 'Facebook' %>
-	<div style="margin-top: 3%;">
-	<%= f.text_field :country, class: 'form-signin', placeholder: 'Country' %>
-	<div style="margin-top: 3%;">
-	<%= f.text_field :city, class: 'form-signin',placeholder: 'City' %>
-	<div style="margin-top: 3%;">
-	<%= f.text_field :adress, class: 'form-signin', placeholder: 'Adress' %>
-	<div style="margin-top: 3%;">
-
-	<%= f.date_field :dofb%>
-
-<div style="margin-top: 3%;">
-  <%= button_tag( :class => "btn btn-lg btn-primary btn-block") do %>
-      <i class="zmdi zmdi-sign-in m-r-xs"></i>Edit
-      <%end%>
-</div>
-
-</div>
-</body>
-</div>
-
-</div> 
-
-<div style="margin-top: 50%; "></div>
- <style>
 /* Add a dark background color to the footer */
 footer {
     background-color: #2d2d30;
@@ -112,9 +75,30 @@ footer a:hover {
 }
 </style>
 
-<footer class="text-center">
-  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a><br><br>
-  <p>UzNU 2018</p>
-</footer>
+  <div class="login">
+  <h1 style="margin-right: 30%;">Edit your profile</h1>
+
+
+	<div style="margin-top: 3%;"></div>
+	<%= f.text_field :name, class: 'form-signin',autofocus: true, placeholder: 'Name'%>
+	<div style="margin-top: 3%;"></div>
+    <%= f.file_field :avatar, placeholder: 'avatar'%>
+    <div style="margin-top: 3%;"></div>
+	<%= f.text_field :full_name, class: 'form-signin', placeholder: 'Full name'%>
+	<div style="margin-top: 3%;"></div>
+	<%= f.text_field :facebook_url, class: 'form-signin', placeholder: 'Facebook' %>
+	<div style="margin-top: 3%;"></div>
+	<%= f.text_field :country, class: 'form-signin', placeholder: 'Country' %>
+	<div style="margin-top: 3%;"></div>
+	<%= f.text_field :city, class: 'form-signin',placeholder: 'City' %>
+	<div style="margin-top: 3%;"></div>
+	<%= f.text_field :adress, class: 'form-signin', placeholder: 'Adress' %>
+	<div style="margin-top: 3%;"></div>
+  <%= f.date_field :dofb%>
+  <div style="margin-top: 3%;"></div>
+    <%= button_tag( :class => "btn btn-lg btn-primary btn-block") do %>
+      <i class="zmdi zmdi-sign-in m-r-xs"></i>Edit
+    <%end%>
+  </div>
+<div style="margin-top: 50%; "></div>
+

@@ -71,10 +71,12 @@ transition: all .3s ease-out;
       <div class="col-md-4 info" style="margin-top: 8%; ">
         <h4><i class="zmdi zmdi-account"></i> <%= @userparam.full_name %></h4>
         <h4><i class="zmdi zmdi-pin"></i> <%= @userparam.country %>, <%= @userparam.city %></h4>
-        <h4><i class="zmdi zmdi-calendar"></i> <%= @userparam.dofb.strftime("%b,%d,%Y") %></h4>
+        <%if @userparam.dofb %>
+          <h4><i class="zmdi zmdi-calendar"></i> <%= @userparam.dofb.strftime("%b,%d,%Y") %></h4>
+        <%end%>
 
       </div>
-      <h2 class="text-center margin-bottom-lg position-relative"><%= @userparam.name%>, start QuickCchik!</h2>
+      <h2 class="text-center margin-bottom-lg position-relative"><%= @userparam.name%>, start QuickChik!</h2>
        <div class="col-md-4 info">
       <ul class="rounded" >
          <% Category.all.each do |category|%>

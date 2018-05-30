@@ -9,7 +9,7 @@ class Institution < ApplicationRecord
 
   geocoded_by :address   # can also be an IP address
   after_validation :geocode,  :if => :address_changed?  # auto-fetch coordinates
-
+  validates :address , presence: true, uniqueness: true
    validates :name, length: { minimum: 3 }, presence: true, uniqueness: true
    validates :description, length: { in: 10..300 }, allow_blank: true
    validates_format_of :phoneNumber,

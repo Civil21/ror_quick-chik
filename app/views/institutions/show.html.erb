@@ -38,6 +38,12 @@ body {
 
 }
 
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+
+
 </style>
 
 </br>
@@ -111,11 +117,8 @@ body {
 <%=@institution.phoneNumber%> |
 <%=@institution.address%>
 </div>
-<%if not @institution.address.equal?("") %>
-  <div class="static-map" align="center">
-    <%= image_tag "https://maps.googleapis.com/maps/api/staticmap?size=640x320&sensor=false&zoom=16&markers=#{@institution.latitude}%2C#{@institution.longitude}&key=AIzaSyAplIJPFAMB2zJBfoXqtCBRkwu4WKvq7u4"%>
-  </div>
-<%end%>
+    <h3>Select Location</h3>
+    <div id="map"></div>
 </div>
 
 <div style="margin-top: 10%;"></div>
@@ -222,3 +225,19 @@ body {
       score: <%=@institution.atmosphere%>
     });
 </script>
+    <script>
+      function initMap() {
+        var uluru = {lat: <%=@institution.latitude%>, lng: <%=@institution.longitude%>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAplIJPFAMB2zJBfoXqtCBRkwu4WKvq7u4&callback=initMap">
+    </script>
