@@ -8,4 +8,5 @@ class CategoriesController < ApplicationController
   	@category=Category.find_by(name: params[:id])
   	@institutions=@category.institution
   end
+  
 end

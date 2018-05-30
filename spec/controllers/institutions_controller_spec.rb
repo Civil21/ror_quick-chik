@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe InstitutionsController, type: :controller do
+let!(:category) { build(:category, name: "Somename") }
+
+login_user
+
+let!(:institution){create(:institution ,name: subject.name )}
+
 
   describe "GET #index" do
     it "returns http success" do
@@ -45,3 +51,4 @@ RSpec.describe InstitutionsController, type: :controller do
   #   end
   # end
 
+end
