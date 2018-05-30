@@ -225,3 +225,11 @@ a {
   margin: 0 !important;
 }
 
+#user-profile {
+  padding: 40px 0 60px 0;
+  .avatar {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+}
