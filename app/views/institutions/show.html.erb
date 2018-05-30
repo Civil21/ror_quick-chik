@@ -114,19 +114,18 @@ body {
   </tr>
 </table>
 <div class="container-fluid text-center" style="color: silver;">
-<%=@institution.phoneNumber%> |
-<%=@institution.address%>
+  <%=@institution.phoneNumber%> | <%=@institution.address%>
 </div>
-    <h3>Select Location</h3>
+    <h3 align="center">Select Location:</h3>
     <div id="map"></div>
 </div>
 
-<div style="margin-top: 10%;"></div>
 <div>
 <hr>
 <div class="container-fluid"  style=" box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2);">
   <div class="text-center">
-    <h2 style="color: silver;">Рейтинг</h2></br>
+    <h2 style="color: silver;">Рейтинг</h2>
+    </br>
   </div>
   <div style="text-align: center;">
   <div class="row">
@@ -143,23 +142,26 @@ body {
           </div>
         </div>
       </div>
-
-<div style="text-align: center;">
-  <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#rating">
-    <span class="glyphicon glyphicon-plus">Добавити відгук</span>
-  </button>
-</div>
-<div id="rating" class="row collapse">
-  <%if @rating.nil? %>
-   <%@rating=Rating.new%>
-  	<%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
-  		<%=render 'ratings/form', f:f%>
-	 <%end%>
-  <%else%>
+<div class="row ">
+<%if @rating.nil? %>
+  <div style="text-align: center;">
+    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#rating">
+      <span class="glyphicon glyphicon-plus">Залишити рекомендацію</span>
+    </button>
+  </div>
+  <div id="rating" class="collapse">
+    <div class="col-sm-6">
+      <%@rating=Rating.new%>
+      <%= form_for @rating , url:rating_institution_path(@institution.id), method: :patch, validate: true  do |f| %>
+        <%=render 'ratings/form', f:f%>
+	   <%end%>
+    </div>
+  </div>
+<%else%>
    <div class="col-sm-6">
       <div class="panel panel-default text-center">
         <div class="panel-heading">
-          <h3>Залиште відгук:</h3>
+          <h3>Ваша рекомендація:</h3>
         </div>
         <div class="panel-body">
           <%= render @rating%>
@@ -169,37 +171,32 @@ body {
   <%end%>
 </div>
 </div>
-</div>
+
 </div>
 
 
 <div class="container-fluid" >
-  <div class="text-center"><div style="margin-top: 10%;"></div>
-<h2 style="color: silver;">Відгуки та поради:</h2>
-</div>
-</div>
-
-
-
-
-<div style="text-align: center;"><button type="button" class="btn btn-default" data-toggle="collapse" data-target="#comment">
-    <span class="glyphicon glyphicon-plus">Новий комент</span>
-</button></div>
-<div>
-<div id="comment" class="collapse">
-	<%=form_for @institutionComment, url:institution_institution_comments_path(@institution.id) do |f|%>
-  		<%=render "institution_comments/form", f:f%>
-  	<%end%>
-</div>
-<div style="margin-left: 2%;">
-<% @comments.each do |comment| %>
-<%= render 'institution_comments/institution_comment', comment:comment%>
-<%end%>
-</div>
-</div>
-
-
-</div>
+  <div class="text-center">
+    <div style="margin-top: 10%;"></div>
+    <h2 style="color: silver;">Відгуки та поради:</h2>
+  </div>
+  <div style="text-align: center;">
+    <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#comment">
+      <span class="glyphicon glyphicon-plus">Новий комент</span>
+    </button>
+  </div>
+  <div>
+    <div id="comment" class="collapse">
+      <%=form_for @institutionComment, url:institution_institution_comments_path(@institution.id) do |f|%>
+  		  <%=render "institution_comments/form", f:f%>
+      <%end%>
+    </div>
+    <div style="margin-left: 2%;">
+      <% @comments.each do |comment| %>
+        <%= render 'institution_comments/institution_comment', comment:comment%>
+      <%end%>
+    </div>
+  </div>
 </div>
 <div style="margin-top: 10%;"></div>
 
@@ -225,19 +222,19 @@ body {
       score: <%=@institution.atmosphere%>
     });
 </script>
-    <script>
-      function initMap() {
-        var uluru = {lat: <%=@institution.latitude%>, lng: <%=@institution.longitude%>};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 12,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
+<script>
+  function initMap() {
+    var uluru = {lat: <%=@institution.latitude%>, lng: <%=@institution.longitude%>};
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 12,
+      center: uluru
+    });
+    var marker = new google.maps.Marker({
+      position: uluru,
+      map: map
+    });    
+  }
+</script>
+<script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAplIJPFAMB2zJBfoXqtCBRkwu4WKvq7u4&callback=initMap">
-    </script>
+</script>
