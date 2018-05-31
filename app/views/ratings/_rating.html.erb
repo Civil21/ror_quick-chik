@@ -1,5 +1,11 @@
 <div>
 
+Kitchen: <div id="user_kitchen<%=rating.id%>"></div>
+Servise: <div id="user_servise<%=rating.id%>"></div>
+Cleannes: <div id="user_cleannes<%=rating.id%>"></div>
+Atmosphere: <div id="user_atmosphere<%=rating.id%>"></div> </br>
+<h4>"<%=rating.text%>"</h4><br/>
+<b style="color: green;"><%=rating.user.email%></b></p>
     <%=link_to positiv_vote_path(rating.class.name,rating.id) do%>
       <span class="glyphicon glyphicon-plus"></span>
     <%end%>
@@ -7,13 +13,6 @@
     <%=link_to negativ_vote_path(rating.class.name,rating.id) do%>
       <span class="glyphicon glyphicon-minus"></span>
     <%end%>
-Kitchen: <div id="user_kitchen<%=rating.id%>"></div>
-Servise: <div id="user_servise<%=rating.id%>"></div>
-Cleannes: <div id="user_cleannes<%=rating.id%>"></div>
-Atmosphere: <div id="user_atmosphere<%=rating.id%>"></div> </br>
-<h4>"<%=rating.text%>"</h4><br/>
-<b style="color: green;"><%=rating.user.email%></b></p>
-
 </br  >
 <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#rating_comment_<%=rating.id%>">
     <span class="glyphicon glyphicon-plus">Відповісти</span>
